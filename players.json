@@ -2,188 +2,146 @@
   "updatedAt": "2026-09-04T18:00:00Z",
   "players": [
     {
-      "ign": "Ashkindle",
+      "ign": "DxedMC",
       "region": "EU",
       "tiers": {
-        "sword": "HT1",
-        "axe": "HT1",
-        "mace": "HT2",
-        "uhc": "HT1",
-        "nethpot": "HT1",
-        "diapot": "HT1",
-        "smp": "HT2",
-        "cpvp": "HT1"
-      },
-      "retired": ["mace"]
+        "cpvp": "HT4"
     },
     {
-      "ign": "Voidrend",
-      "region": "NA",
-      "tiers": {
-        "sword": "HT1",
-        "axe": "LT1",
-        "mace": "HT1",
-        "uhc": "HT2",
-        "nethpot": "LT1",
-        "diapot": "HT2",
-        "smp": "HT1",
-        "cpvp": "LT1"
-      }
-    },
-    {
-      "ign": "Kestrix",
-      "region": "AS",
-      "tiers": {
-        "sword": "LT1",
-        "axe": "HT1",
-        "mace": "LT1",
-        "uhc": "HT1",
-        "nethpot": "HT2",
-        "diapot": "LT1",
-        "smp": "LT1",
-        "cpvp": "HT2"
-      }
-    },
-    {
-      "ign": "Nyxara",
+      "ign": "LocoLuca0",
       "region": "EU",
       "tiers": {
-        "sword": "HT2",
-        "axe": "HT2",
-        "mace": "HT1",
-        "uhc": "LT1",
-        "nethpot": "HT1",
-        "diapot": "HT2",
-        "smp": "HT1",
-        "cpvp": "LT1"
-      }
-    },
-    {
-      "ign": "Thorne_Blaze",
-      "region": "OCE",
-      "tiers": {
-        "sword": "LT1",
         "axe": "LT2",
-        "mace": "HT2",
-        "uhc": "HT2",
-        "nethpot": "LT2",
-        "diapot": "HT1",
-        "smp": "LT1",
-        "cpvp": "HT2"
+        "nethpot": "HT5",
       }
     },
     {
-      "ign": "ScoriaX",
-      "region": "NA",
+      "ign": "TaifunMC",
+      "region": "EU",
       "tiers": {
-        "sword": "HT2",
+        "sword": "LT3",
         "axe": "HT3",
-        "mace": "LT2",
-        "uhc": "LT2",
-        "nethpot": "HT2",
-        "diapot": "LT2",
-        "smp": "HT2",
-        "cpvp": "LT2"
+        "mace": "LT4",
+        "nethpot": "LT3",
+        "smp": "LT3",
+        "cpvp": "HT5"
       }
     },
     {
-      "ign": "Wrenfall",
+      "ign": "Lando55556",
       "region": "EU",
       "tiers": {
-        "sword": "LT2",
-        "axe": "HT2",
-        "mace": "HT3",
-        "uhc": "LT2",
-        "nethpot": "HT3",
-        "diapot": "HT2",
-        "cpvp": "LT2"
+        "axe": "LT4",
+        "nethpot": "HT5",
+        "cpvp": "HT4"
       }
     },
     {
-      "ign": "Duskhollow",
-      "region": "AS",
+      "ign": "LightworkIsHere",
+      "region": "EU",
       "tiers": {
-        "sword": "HT3",
-        "axe": "LT2",
-        "mace": "LT2",
-        "uhc": "HT3",
-        "diapot": "LT2",
-        "smp": "HT3",
-        "cpvp": "LT3"
+        "uhc": "HT5",
+        "cpvp": "LT4"
       }
     },
     {
-      "ign": "Ferrowyn",
-      "region": "NA",
+      "ign": "Tryh4ard27",
+      "region": "EU",
       "tiers": {
-        "sword": "LT2",
-        "axe": "LT3",
-        "uhc": "LT2",
-        "nethpot": "LT2",
-        "diapot": "HT3",
-        "smp": "LT2",
+        "sword": "LT3",
+        "axe": "HT3",
+        "mace": "LT3",
+        "cpvp": "HT4"
+      }
+    },
+    {
+      "ign": "Anonimowy0",
+      "region": "EU",
+      "tiers": {
+        "axe": "HT4",
+        "mace": "HT4",
+        "nethpot": "LT3",
+        "smp": "LT3",
         "cpvp": "HT3"
       }
     },
     {
-      "ign": "Ignis_Kade",
-      "region": "OCE",
-      "tiers": {
-        "sword": "HT3",
-        "axe": "HT3",
-        "mace": "LT3",
-        "nethpot": "LT3",
-        "diapot": "LT3",
-        "smp": "LT2",
-        "cpvp": "LT2"
-      }
-    },
-    {
-      "ign": "Brackenveil",
+      "ign": "ItzRealCzyzmenps",
       "region": "EU",
       "tiers": {
-        "sword": "LT3",
-        "axe": "LT3",
-        "mace": "LT3",
-        "uhc": "LT3",
-        "smp": "LT3",
-        "cpvp": "LT3"
-      }
-    },
-    {
-      "ign": "Talonstrike",
-      "region": "NA",
-      "tiers": {
-        "sword": "HT4",
-        "axe": "LT3",
-        "uhc": "LT3",
-        "nethpot": "LT3",
-        "smp": "LT3",
-        "cpvp": "LT4"
-      }
-    },
-    {
-      "ign": "Emberlyn",
-      "region": "AS",
-      "tiers": {
-        "sword": "LT4",
+        "sword": "HT5",
         "axe": "HT4",
-        "mace": "LT4",
-        "nethpot": "LT4",
-        "cpvp": "LT3"
+        "uhc": "HT5",
+        "cpvp": "HT5"
       }
     },
     {
-      "ign": "Grimhaze",
-      "region": "OCE",
+      "ign": "Alex190913",
+      "region": "EU",
       "tiers": {
         "axe": "LT5",
-        "mace": "HT5",
-        "uhc": "LT4",
-        "diapot": "LT4",
-        "smp": "LT4",
-        "cpvp": "LT4"
+        "mace": "HT3",
+        "smp": "HT5",
+        "cpvp": "HT3"
       }
-    }
-  ]
-}
+    },
+    {
+      "ign": "Detful33",
+      "region": "EU",
+      "tiers": {
+        "uhc": "HT4",
+      }
+    },
+    {
+      "ign": "PlusInTheER",
+      "region": "EU",
+      "tiers": {
+        "sword": "LT2",
+        "axe": "HT3",
+        "uhc": "HT4",
+      }
+    },
+    {
+      "ign": "ItsDesate",
+      "region": "EU",
+      "tiers": {
+        "sword": "LT4",
+        "axe": "LT4",
+      }
+    },
+    {
+      "ign": "Birnenhund",
+      "region": "EU",
+      "tiers": {
+        "cpvp": "LT3"
+      }
+    },
+    {
+      "ign": "TfouesLilKitten",
+      "region": "EU",
+      "tiers": {
+        "axe": "LT3",
+      }
+    },
+    {
+      "ign": "Tfoue",
+      "region": "EU",
+      "tiers": {
+        "sword": "LT2",
+        "axe": "LT3",
+        "mace": "LT2",
+        "uhc": "LT3",
+        "nethpot": "LT2",
+        "diapot": "LT2",
+        "smp": "LT2",
+        "cpvp": "LT3"
+      }
+    },
+    {
+      "ign": "Sprucehere",
+      "region": "EU",
+      "tiers": {
+        "axe": "LT2",
+      }
+    },
+    {
