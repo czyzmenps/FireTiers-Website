@@ -6,13 +6,14 @@
       "region": "EU",
       "tiers": {
         "cpvp": "HT4"
+      }
     },
     {
       "ign": "LocoLuca0",
       "region": "EU",
       "tiers": {
         "axe": "LT2",
-        "nethpot": "HT5",
+        "nethpot": "HT5"
       }
     },
     {
@@ -89,7 +90,7 @@
       "ign": "Detful33",
       "region": "EU",
       "tiers": {
-        "uhc": "HT4",
+        "uhc": "HT4"
       }
     },
     {
@@ -98,7 +99,7 @@
       "tiers": {
         "sword": "LT2",
         "axe": "HT3",
-        "uhc": "HT4",
+        "uhc": "HT4"
       }
     },
     {
@@ -106,7 +107,7 @@
       "region": "EU",
       "tiers": {
         "sword": "LT4",
-        "axe": "LT4",
+        "axe": "LT4"
       }
     },
     {
@@ -120,7 +121,7 @@
       "ign": "TfouesLilKitten",
       "region": "EU",
       "tiers": {
-        "axe": "LT3",
+        "axe": "LT3"
       }
     },
     {
@@ -141,7 +142,8 @@
       "ign": "Sprucehere",
       "region": "EU",
       "tiers": {
-        "axe": "LT2",
+        "axe": "LT2"
       }
-    },
-    {
+    }
+  ]
+}
