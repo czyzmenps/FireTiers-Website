@@ -70,23 +70,51 @@
 
   .ambient-glow{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;}
   #emberCanvas{position:fixed; inset:0; z-index:0; width:100%; height:100%; pointer-events:none;}
-  .glow-blob{position:absolute; border-radius:50%; filter:blur(90px); opacity:.18;}
-  .glow-1{width:520px; height:520px; background:var(--flame-4); top:-12%; left:-10%;}
-  .glow-2{width:460px; height:460px; background:var(--flame-6); bottom:-14%; right:-8%;}
-  .glow-3{width:380px; height:380px; background:var(--flame-2); top:38%; left:58%; opacity:.15;}
+  .glow-blob{position:absolute; border-radius:50%; opacity:.18;}
+  .glow-1{width:640px; height:640px; top:-16%; left:-14%; background:radial-gradient(circle, var(--flame-4) 0%, rgba(255,140,66,0) 72%);}
+  .glow-2{width:560px; height:560px; bottom:-18%; right:-10%; background:radial-gradient(circle, var(--flame-6) 0%, rgba(240,78,35,0) 72%);}
+  .glow-3{width:460px; height:460px; top:36%; left:56%; opacity:.15; background:radial-gradient(circle, var(--flame-2) 0%, rgba(255,198,112,0) 72%);}
   @media (prefers-reduced-motion: no-preference){
-    .glow-1{animation:drift1 22s ease-in-out infinite;}
-    .glow-2{animation:drift2 27s ease-in-out infinite;}
-    .glow-3{animation:drift3 18s ease-in-out infinite;}
+    .glow-1{animation:drift1 27s ease-in-out infinite;}
+    .glow-2{animation:drift2 33s ease-in-out infinite;}
+    .glow-3{animation:drift3 22s ease-in-out infinite;}
   }
-  @keyframes drift1{ 0%,100%{transform:translate(0,0) scale(1); opacity:.18;} 50%{transform:translate(65px,45px) scale(1.15); opacity:.27;} }
-  @keyframes drift2{ 0%,100%{transform:translate(0,0) scale(1); opacity:.18;} 50%{transform:translate(-55px,-60px) scale(1.12); opacity:.26;} }
-  @keyframes drift3{ 0%,100%{transform:translate(0,0) scale(1); opacity:.15;} 50%{transform:translate(-70px,32px) scale(1.18); opacity:.23;} }
+  @keyframes drift1{ 0%,100%{transform:translate(0,0) scale(1); opacity:.18;} 25%{transform:translate(58px,-38px) scale(1.08); opacity:.24;} 50%{transform:translate(92px,54px) scale(1.2); opacity:.3;} 75%{transform:translate(20px,70px) scale(1.05); opacity:.22;} }
+  @keyframes drift2{ 0%,100%{transform:translate(0,0) scale(1); opacity:.18;} 25%{transform:translate(-70px,20px) scale(1.1); opacity:.24;} 50%{transform:translate(-90px,-70px) scale(1.16); opacity:.29;} 75%{transform:translate(-25px,-90px) scale(1.06); opacity:.21;} }
+  @keyframes drift3{ 0%,100%{transform:translate(0,0) scale(1); opacity:.15;} 25%{transform:translate(-45px,45px) scale(1.1); opacity:.2;} 50%{transform:translate(-95px,18px) scale(1.24); opacity:.26;} 75%{transform:translate(-35px,-40px) scale(1.08); opacity:.18;} }
 
   @media (prefers-reduced-motion: no-preference){
     html.js-anim .reveal{opacity:0; transform:translateY(20px) scale(.985); transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);}
     html.js-anim .reveal.revealed{opacity:1; transform:translateY(0) scale(1);}
   }
+
+  /* ---------- intro splash (once per tab session) ---------- */
+  #introOverlay{display:none;}
+  @media (prefers-reduced-motion: no-preference){
+    #introOverlay{
+      display:flex; position:fixed; inset:0; z-index:9999;
+      align-items:center; justify-content:center;
+      background:var(--void);
+      animation:intro-veil-out .5s ease .95s forwards;
+    }
+    #introOverlay .intro-burst{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+    #introOverlay .intro-badge{
+      position:relative; width:72px; height:72px; border-radius:50%;
+      background-image:var(--badge-icon); background-size:cover; background-position:center;
+      box-shadow:0 0 0 0 rgba(255,140,66,.55);
+      animation:intro-pop .55s cubic-bezier(.34,1.56,.64,1) .1s both, intro-ring 1s ease-out .1s both;
+    }
+    #introOverlay .intro-word{
+      position:absolute; top:calc(50% + 60px); left:50%; transform:translate(-50%,4px);
+      font-family:'Pixelify Sans',sans-serif; font-weight:600; font-size:14px;
+      letter-spacing:.3em; text-transform:uppercase; color:var(--bone-dim);
+      opacity:0; animation:intro-label .5s ease .38s forwards;
+    }
+  }
+  @keyframes intro-pop{ 0%{transform:scale(.35); opacity:0;} 100%{transform:scale(1); opacity:1;} }
+  @keyframes intro-ring{ 0%{box-shadow:0 0 0 0 rgba(255,140,66,.55);} 100%{box-shadow:0 0 0 70px rgba(255,140,66,0);} }
+  @keyframes intro-label{ 0%{opacity:0; transform:translate(-50%,4px);} 100%{opacity:.85; transform:translate(-50%,0);} }
+  @keyframes intro-veil-out{ 0%{opacity:1; visibility:visible;} 99%{visibility:visible;} 100%{opacity:0; visibility:hidden;} }
 
   h1,h2,h3{font-family:'Pixelify Sans',system-ui,sans-serif; margin:0; text-wrap:balance;}
   a{color:inherit;}
@@ -162,6 +190,7 @@
     transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
   }
   .head-cta:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 8px 22px rgba(240,78,35,.48);}
+  .head-cta:active{transform:translateY(0) scale(.97); box-shadow:0 3px 10px rgba(240,78,35,.4);}
   .head-cta span.nudge{display:inline-block; transition:transform .2s cubic-bezier(.34,1.56,.64,1);}
   .head-cta:hover span.nudge{transform:translateX(3px);}
   .head-cta::after{
@@ -183,6 +212,7 @@
     transition:color .15s ease, border-color .15s ease, background .15s ease, transform .2s cubic-bezier(.34,1.56,.64,1);
   }
   .discord-icon-btn:hover{color:#fff; border-color:#5865F2; background:#5865F2; transform:translateY(-2px) scale(1.06);}
+  .discord-icon-btn:active{transform:translateY(0) scale(.94);}
 
   /* ---------- hero ---------- */
   .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line-soft);}
@@ -195,6 +225,13 @@
     background-position:center, 50% 36%;
     filter:saturate(.9);
   }
+  @media (prefers-reduced-motion: no-preference){
+    .hero-media{animation:hero-media-in 1.6s cubic-bezier(.16,1,.3,1) var(--hero-media-delay,.95s) both;}
+  }
+  @keyframes hero-media-in{
+    0%{transform:scale(1.08); filter:saturate(.75) brightness(.72);}
+    100%{transform:scale(1); filter:saturate(.9) brightness(1);}
+  }
   .ember-layer{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
   .ember{
     position:absolute; bottom:-6%;
@@ -206,9 +243,13 @@
   @media (prefers-reduced-motion: no-preference){
     .ember{ animation:rise linear infinite; }
     @keyframes rise{
-      0%{ transform:translateY(0) translateX(0); opacity:0; }
+      0%{ transform:translate(0,0); opacity:0; }
       8%{ opacity:.9; }
-      100%{ transform:translateY(-115vh) translateX(var(--drift,20px)); opacity:0; }
+      20%{ transform:translate(calc(var(--drift,20px) * 0.2 + var(--sway,14px)), -23vh); }
+      40%{ transform:translate(calc(var(--drift,20px) * 0.4 - var(--sway,14px)), -46vh); }
+      60%{ transform:translate(calc(var(--drift,20px) * 0.6 + var(--sway,14px)), -69vh); }
+      80%{ transform:translate(calc(var(--drift,20px) * 0.8 - var(--sway,14px)), -92vh); }
+      100%{ transform:translate(var(--drift,20px), -115vh); opacity:0; }
     }
   }
   .hero-inner{
@@ -237,10 +278,10 @@
     filter:drop-shadow(0 6px 30px rgba(240,78,35,.25));
   }
   @media (prefers-reduced-motion: no-preference){
-    h1.wordmark{animation:hero-in .8s cubic-bezier(.16,1,.3,1) .1s both, flame-flicker 7s ease-in-out infinite, flame-glow 3.1s ease-in-out infinite;}
-    .eyebrow{animation:hero-in .6s cubic-bezier(.16,1,.3,1) .02s both;}
-    .hero-tagline{animation:hero-in .7s cubic-bezier(.16,1,.3,1) .3s both;}
-    .hero-meta{animation:hero-in .7s cubic-bezier(.16,1,.3,1) .44s both;}
+    h1.wordmark{animation:hero-in .8s cubic-bezier(.16,1,.3,1) var(--hero-delay-word,.1s) both, flame-flicker 7s ease-in-out infinite, flame-glow 3.1s ease-in-out infinite;}
+    .eyebrow{animation:hero-in .6s cubic-bezier(.16,1,.3,1) var(--hero-delay-eyebrow,.02s) both;}
+    .hero-tagline{animation:hero-in .7s cubic-bezier(.16,1,.3,1) var(--hero-delay-tag,.3s) both;}
+    .hero-meta{animation:hero-in .7s cubic-bezier(.16,1,.3,1) var(--hero-delay-meta,.44s) both;}
   }
   @keyframes hero-in{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
   @keyframes flame-flicker{
@@ -274,14 +315,33 @@
   #liveChip.chip-live{color:#8fe3a0; border-color:rgba(143,227,160,.35); background:rgba(143,227,160,.08);}
   #liveChip.chip-sample{color:var(--bone-dim);}
   #liveChip.chip-error{color:#ff9b8a; border-color:rgba(255,128,112,.35); background:rgba(255,128,112,.08);}
+  .live-dot{position:relative; display:inline-block;}
   @media (prefers-reduced-motion: no-preference){
-    #liveChip.chip-live{animation:pulse-live 2.6s ease-in-out infinite;}
+    #liveChip.chip-live .live-dot::after{
+      content:""; position:absolute; inset:-4px; border-radius:50%;
+      border:1.5px solid #8fe3a0; opacity:.8; pointer-events:none;
+      animation:live-ping 1.8s cubic-bezier(.16,1,.3,1) infinite;
+    }
   }
   @keyframes pulse-live{ 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.7; transform:scale(1.08);} }
+  @keyframes live-ping{ 0%{transform:scale(.55); opacity:.8;} 100%{transform:scale(2.8); opacity:0;} }
 
   /* ---------- sections ---------- */
   main{position:relative; z-index:1;}
   section{padding:64px 0;}
+
+  /* The fixed ambient glow (.glow-blob, behind everything) is fully hidden
+     behind the hero'''s own opaque backdrop, then instantly fully exposed
+     the moment the transparent section below it begins -- an on/off reveal
+     right at that seam that reads as a hard line no matter how soft the
+     blob'''s own edge is. This re-covers that same strip and fades it back
+     out over ~240px instead of 0px, so the reveal is gradual. */
+  #rankings{position:relative;}
+  #rankings::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:240px;
+    background:linear-gradient(180deg, var(--void) 0%, rgba(21,13,10,0) 100%);
+    pointer-events:none; z-index:-1;
+  }
   .section-head{
     display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
     gap:18px; margin-bottom:28px;
@@ -357,6 +417,10 @@
     font-variant-numeric:tabular-nums;
   }
   .stat-pill.stat-retired strong{color:var(--bone-dim);}
+  @media (prefers-reduced-motion: no-preference){
+    .stat-pill{animation:stat-pill-in .4s cubic-bezier(.34,1.56,.64,1) both;}
+  }
+  @keyframes stat-pill-in{ 0%{opacity:0; transform:translateY(8px) scale(.9);} 100%{opacity:1; transform:translateY(0) scale(1);} }
 
   /* ---------- overall "show more" ---------- */
   .overall-more{display:flex; justify-content:center; padding:16px 6px 4px;}
@@ -384,8 +448,8 @@
 
   /* ---------- tier sections (per-kit) ---------- */
   .tier-sections{display:flex; flex-direction:column; gap:14px;}
-  #kitSections{transition:opacity .14s ease, transform .14s ease;}
-  #kitSections.kit-swap-out{opacity:0; transform:translateY(4px);}
+  #kitSections{transition:opacity .2s cubic-bezier(.16,1,.3,1), transform .2s cubic-bezier(.16,1,.3,1);}
+  #kitSections.kit-swap-out{opacity:0; transform:translateY(8px) scale(.98);}
   .tier-section{overflow:hidden;}
   .tier-section-head{
     display:flex; align-items:center; gap:12px;
@@ -399,10 +463,10 @@
   .tier-player-row{
     display:flex; align-items:center; justify-content:space-between; gap:14px;
     padding:11px 18px; border-bottom:1px solid var(--line-soft);
-    transition:background .12s ease;
+    transition:background .18s ease, box-shadow .18s ease;
   }
   .tier-player-row:last-child{border-bottom:none;}
-  .tier-player-row:hover{background:rgba(255,140,66,.05);}
+  .tier-player-row:hover{background:linear-gradient(90deg, rgba(255,140,66,.1), rgba(255,140,66,.02) 65%); box-shadow:inset 3px 0 0 0 rgba(255,140,66,.5);}
   .tier-empty{padding:32px 18px; text-align:center; color:var(--bone-faint); font-size:13.5px;}
 
   /* ---------- toasts ---------- */
@@ -466,6 +530,16 @@
     100%{opacity:1; transform:scale(1) translateY(0);}
   }
   @keyframes backdrop-in{ from{opacity:0;} to{opacity:1;} }
+  /* Extra flourish layered onto the existing spark burst for the #1 spot
+     specifically (see emberBurst() in JS, the only caller that ever adds
+     this class) -- a brief warm flash across the card itself so the
+     celebration reads on the whole modal, not just the avatar corner. */
+  .modal-card.ignite{animation:card-ignite 1.1s ease-out;}
+  @keyframes card-ignite{
+    0%{box-shadow:0 30px 70px rgba(0,0,0,.55), 0 0 0 0 rgba(255,197,90,0);}
+    35%{box-shadow:0 30px 70px rgba(0,0,0,.55), 0 0 60px 14px rgba(255,197,90,.5);}
+    100%{box-shadow:0 30px 70px rgba(0,0,0,.55), 0 0 0 0 rgba(255,197,90,0);}
+  }
   .modal-close{
     position:absolute; top:14px; right:14px; width:30px; height:30px;
     display:inline-flex; align-items:center; justify-content:center;
@@ -474,6 +548,7 @@
     transition:color .2s ease, border-color .2s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background .2s ease;
   }
   .modal-close:hover{color:var(--bone); border-color:var(--accent); transform:rotate(90deg) scale(1.08); background:rgba(255,140,66,.12);}
+  .modal-close:active{transform:rotate(90deg) scale(.92);}
   .modal-share{right:52px;}
   .modal-share:hover{transform:translateY(-2px) scale(1.08); color:var(--bone);}
   .modal-share.copied{color:#8fe3a0; border-color:rgba(143,227,160,.5); background:rgba(143,227,160,.1);}
@@ -514,12 +589,12 @@
   .modal-avatar.ring-silver{border-color:#cabfae; box-shadow:0 0 0 4px rgba(202,191,174,.16), 0 8px 22px rgba(0,0,0,.4);}
   .modal-avatar.ring-bronze{border-color:#c07a3e; box-shadow:0 0 0 4px rgba(192,122,62,.16), 0 8px 22px rgba(0,0,0,.4);}
   .modal-avatar.ring-rk0{border-color:var(--line);}
-  .modal-avatar.ring-rk1{border-color:var(--flame-2);}
-  .modal-avatar.ring-rk2{border-color:var(--flame-3);}
-  .modal-avatar.ring-rk3{border-color:var(--flame-4);}
-  .modal-avatar.ring-rk4{border-color:var(--flame-6);}
-  .modal-avatar.ring-rk5{border-color:var(--flame-7);}
-  .modal-avatar.ring-rk6{border-color:var(--accent-bright); box-shadow:0 0 0 4px rgba(255,206,107,.2), 0 8px 22px rgba(0,0,0,.4);}
+  .modal-avatar.ring-rk1{border-color:#9291d9;}
+  .modal-avatar.ring-rk2{border-color:#b0aee8;}
+  .modal-avatar.ring-rk3{border-color:#c7a3e8;}
+  .modal-avatar.ring-rk4{border-color:#d65278;}
+  .modal-avatar.ring-rk5{border-color:#f3b141;}
+  .modal-avatar.ring-rk6{border-color:#fad741; box-shadow:0 0 0 4px rgba(250,215,65,.22), 0 8px 22px rgba(0,0,0,.4);}
   @media (prefers-reduced-motion: no-preference){
     .modal-card .modal-avatar{animation:avatar-pop .5s cubic-bezier(.34,1.56,.64,1) .08s both;}
     .tier-chip{animation:tier-chip-in .42s cubic-bezier(.34,1.56,.64,1) both;}
@@ -636,11 +711,13 @@
     font-size:14px; vertical-align:middle;
   }
   tbody tr:last-child td{border-bottom:none;}
-  tbody tr{transition:background .12s ease;}
-  tbody tr:hover{background:rgba(255,140,66,.05);}
+  tbody tr{transition:background .18s ease;}
+  tbody tr:hover{background:linear-gradient(90deg, rgba(255,140,66,.1), rgba(255,140,66,.02) 65%);}
+  tbody tr:not(.top1):not(.top2):not(.top3):hover td:first-child{box-shadow:inset 3px 0 0 0 rgba(255,140,66,.5);}
   td.rank{
     font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;
     color:var(--bone-dim); width:52px;
+    transition:box-shadow .18s ease;
   }
   tr.top1{--podium:var(--flame-1);}
   tr.top2{--podium:#d9d0c0;}
@@ -650,56 +727,63 @@
   }
   .rank-medal-wrap{position:relative; display:inline-flex; flex:none;}
   .medal-crown{
-    position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+    position:absolute; top:-11px; left:50%; transform:translateX(-50%);
     color:#ffd876; filter:drop-shadow(0 2px 3px rgba(0,0,0,.55)); pointer-events:none;
+    z-index:2;
     transition:transform .25s cubic-bezier(.34,1.56,.64,1);
   }
+  /* mctiers-style rank ribbon: a wide badge pairing a bold slanted number
+     with the player's own avatar (cut in at an angle), instead of a plain
+     number circle sitting apart from the avatar. */
   .rank-medal{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:28px; height:28px; border-radius:50%; flex:none; position:relative;
-    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:12.5px;
-    color:#2a1608; border:1.5px solid rgba(255,255,255,.4);
+    display:inline-flex; align-items:center; position:relative;
+    height:38px; min-width:68px; border-radius:9px; flex:none;
+    padding:0 5px 0 11px;
+    font-family:'Pixelify Sans',sans-serif; font-weight:700; font-style:italic; font-size:18px;
+    color:#fff8e6; text-shadow:0 1px 3px rgba(0,0,0,.4);
+    border:1.5px solid rgba(255,255,255,.4);
     box-shadow:0 2px 5px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 3px rgba(0,0,0,.16);
     transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+    overflow:hidden;
   }
-  .rank-medal::after{
-    content:""; position:absolute; inset:-3px; border-radius:50%;
-    border:1px solid currentColor; opacity:.3; pointer-events:none;
+  .rank-medal-num{position:relative; z-index:1; line-height:1;}
+  .rank-medal-face{
+    position:relative; margin-left:7px; width:32px; height:32px; flex:none;
+    clip-path:polygon(28% 0, 100% 0, 100% 100%, 0% 100%);
+    background:var(--void);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
   }
-  .clickable-row:hover .rank-medal{transform:scale(1.13) rotate(-3deg);}
+  .rank-medal-face .avatar-img{width:26px; height:26px; image-rendering:pixelated; display:block;}
+  .clickable-row:hover .rank-medal{transform:scale(1.05) translateY(-1px);}
   .clickable-row:hover .medal-crown{transform:translateX(-50%) translateY(-2px) rotate(-6deg);}
-  .rank-gold{background:linear-gradient(150deg, #fff5db, #ffb54a 55%, #e2860f); color:#3a1c05;}
-  .rank-silver{background:linear-gradient(150deg, #ffffff, #cabfae 55%, #968971); color:#2c2418;}
-  .rank-bronze{background:linear-gradient(150deg, #f0bd8c, #c07a3e 55%, #814720); color:#2c1608;}
-  /* Little ribbon tails peeking out below the medal circle — podium rows
-     only (.rank-medal-wrap is never used outside the top 3, see rankCell()). */
-  .rank-medal-wrap{padding-bottom:9px;}
-  .rank-medal-wrap::before, .rank-medal-wrap::after{
-    content:""; position:absolute; top:25px; width:6px; height:11px;
-    clip-path:polygon(0 0,100% 0,100% 100%,50% 72%,0 100%);
-    opacity:0; pointer-events:none;
+  .rank-gold{background:linear-gradient(150deg, #fff5db, #ffb54a 55%, #e2860f);}
+  .rank-silver{background:linear-gradient(150deg, #ffffff, #cabfae 55%, #968971);}
+  .rank-bronze{background:linear-gradient(150deg, #f0bd8c, #c07a3e 55%, #814720);}
+  /* The player-cell's own avatar is redundant on podium rows now that the
+     rank ribbon carries its own -- hide it there instead of rendering it
+     twice (see rankCell() for the ribbon's avatarImg() call). */
+  tr.top1 .player-cell .avatar, tr.top2 .player-cell .avatar, tr.top3 .player-cell .avatar{display:none;}
+  @media (max-width:640px){
+    .rank-medal{height:34px; min-width:58px; font-size:16px; padding:0 4px 0 9px;}
+    .rank-medal-face{width:28px; height:28px; margin-left:6px;}
+    .rank-medal-face .avatar-img{width:22px; height:22px;}
   }
-  .rank-medal-wrap:has(.rank-gold)::before, .rank-medal-wrap:has(.rank-gold)::after{opacity:.9; background:linear-gradient(180deg,#e2860f,#a85c05);}
-  .rank-medal-wrap:has(.rank-silver)::before, .rank-medal-wrap:has(.rank-silver)::after{opacity:.9; background:linear-gradient(180deg,#968971,#6b6152);}
-  .rank-medal-wrap:has(.rank-bronze)::before, .rank-medal-wrap:has(.rank-bronze)::after{opacity:.9; background:linear-gradient(180deg,#814720,#5c3116);}
-  .rank-medal-wrap::before{left:4px; transform:rotate(-10deg);}
-  .rank-medal-wrap::after{right:4px; transform:rotate(10deg);}
   @media (prefers-reduced-motion: no-preference){
     .rank-gold{animation:medal-pulse 1.8s ease-in-out infinite;}
     .rank-silver{animation:medal-pulse-silver 2.4s ease-in-out infinite;}
     .rank-bronze{animation:medal-pulse-bronze 2.8s ease-in-out infinite;}
   }
   @keyframes medal-pulse{
-    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 0 rgba(255,197,90,.65); transform:scale(1);}
-    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 20px 6px rgba(255,197,90,.75); transform:scale(1.08);}
+    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 0 rgba(255,197,90,.7); transform:scale(1);}
+    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 28px 9px rgba(255,197,90,.85); transform:scale(1.12);}
   }
   @keyframes medal-pulse-silver{
-    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 0 rgba(224,216,201,.55);}
-    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 14px 4px rgba(224,216,201,.55);}
+    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 0 rgba(224,216,201,.6); transform:scale(1);}
+    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.5), 0 0 22px 7px rgba(224,216,201,.7); transform:scale(1.09);}
   }
   @keyframes medal-pulse-bronze{
-    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 0 rgba(216,130,79,.55);}
-    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.4), 0 0 14px 4px rgba(216,130,79,.55);}
+    0%,100%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 0 rgba(216,130,79,.6); transform:scale(1);}
+    50%{box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.4), 0 0 22px 7px rgba(216,130,79,.7); transform:scale(1.07);}
   }
   .player-cell{display:flex; align-items:center; gap:11px;}
   .avatar{
@@ -719,13 +803,13 @@
     display:inline-flex; align-items:center; gap:4px;
   }
   .rank-badge-icon{flex:none; display:block; width:15px; height:15px; object-fit:contain;}
-  .rank-title.rk0{color:var(--bone-faint);}
-  .rank-title.rk1{color:var(--flame-2);}
-  .rank-title.rk2{color:var(--flame-3);}
-  .rank-title.rk3{color:var(--flame-4);}
-  .rank-title.rk4{color:var(--flame-6);}
-  .rank-title.rk5{color:var(--flame-7); font-weight:800;}
-  .rank-title.rk6{color:var(--flame-2); font-weight:800;}
+  .rank-title.rk0{color:#8b979c;}
+  .rank-title.rk1{color:#9291d9;}
+  .rank-title.rk2{color:#b0aee8;}
+  .rank-title.rk3{color:#c7a3e8;}
+  .rank-title.rk4{color:#d65278;}
+  .rank-title.rk5{color:#f3b141; font-weight:800;}
+  .rank-title.rk6{color:#fad741; font-weight:800;}
   /* The gradient/shimmer treatment lives on the nested text span, not the
      .rank-title element itself, so it never affects the illustrated badge
      <img> (rank-badge-icon), which always shows its own fixed artwork. */
@@ -872,6 +956,7 @@
   }
   .kit-tab:hover{border-color:var(--accent); color:var(--bone); transform:translateY(-1px);}
   .kit-tab:hover .kit-icon{transform:scale(1.16) rotate(-4deg);}
+  .kit-tab:active{transform:scale(.95);}
   .kit-tab.active{
     background:linear-gradient(120deg, rgba(255,140,66,.26), rgba(240,78,35,.16));
     border-color:var(--accent); color:var(--bone);
@@ -918,6 +1003,12 @@
     thead th, tbody td{padding:11px 12px;}
   }
 </style>
+
+<div id="introOverlay" aria-hidden="true">
+  <div class="intro-burst" id="introBurst"></div>
+  <div class="intro-badge"></div>
+  <div class="intro-word">Fire Tiers</div>
+</div>
 
 <div class="ambient-glow" aria-hidden="true">
   <span class="glow-blob glow-1"></span>
@@ -984,7 +1075,7 @@
         </div>
       </div>
 
-      <div class="stats-bar" id="statsBar"></div>
+      <div class="stats-bar reveal" id="statsBar"></div>
 
       <div class="panel reveal">
         <div class="table-wrap">
@@ -1081,6 +1172,31 @@
 (function(){
   "use strict";
 
+  // Hero entrance timing must adapt to whether the one-time ignition splash
+  // (see initIntroSplash() below) will actually cover the page: the splash
+  // hides everything under an opaque veil until ~1.4s in, so on a first
+  // visit the hero's staggered fade-in needs to start once that veil begins
+  // clearing -- otherwise it plays out silently while hidden and the user
+  // never sees it happen. On a repeat pageview in the same tab (splash
+  // skipped via sessionStorage) or with reduced motion, there's no veil, so
+  // the hero should still appear immediately like before. These are read as
+  // CSS custom properties by the hero-in/hero-media-in animations in
+  // <style>, so one set of keyframes serves both cases.
+  (function syncHeroTiming(){
+    var introWillPlay = true;
+    try {
+      var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      introWillPlay = !reduced && sessionStorage.getItem("ftIntroPlayed") !== "1";
+    } catch(e){}
+    var base = introWillPlay ? 0.95 : 0;
+    var root = document.documentElement.style;
+    root.setProperty("--hero-delay-eyebrow", (base + 0.02).toFixed(2) + "s");
+    root.setProperty("--hero-delay-word", (base + 0.1).toFixed(2) + "s");
+    root.setProperty("--hero-delay-tag", (base + 0.3).toFixed(2) + "s");
+    root.setProperty("--hero-delay-meta", (base + 0.44).toFixed(2) + "s");
+    root.setProperty("--hero-media-delay", base.toFixed(2) + "s");
+  })();
+
   // ---- Live data -----------------------------------------------------
   // Fire Tiers reads its roster from this JSON file instead of shipping
   // fixed numbers in the page. Point it at wherever the tier bot/plugin
@@ -1137,11 +1253,10 @@
   var REGION_LABEL = {EU:"Europe", NA:"North America", AS:"Asia", OCE:"Oceania"};
 
   // Small "medallion" icon shown next to a rank title wherever it appears
-  // (table subtitle + profile modal pill), mctiers-style. Uses currentColor
-  // so it always matches its .rank-title's color band. rk6 keeps a SOLID
-  // fallback color on the .rank-title element itself (see CSS) specifically
-  // so this icon never inherits the transparent background-clip:text trick
-  // used only on the nested .rank-title-text span.
+  // (table subtitle + profile modal pill), mctiers-style. Each band uses its
+  // own fixed illustrated artwork (see RANK_BADGE_IMG below) rather than
+  // currentColor, so the icon always shows true to the source art no matter
+  // what color/gradient the neighboring .rank-title text is using.
   // Illustrated rank badges (community-provided art), one per RANK_TITLES
   // band. rk0-rk3 are flat SVGs; rk4-rk6 are small shimmering animated
   // WebPs for the top three prestige tiers.
@@ -1405,14 +1520,16 @@
     if (!isBest || i > 2) return "";
     return i === 0 ? "top1" : i === 1 ? "top2" : "top3";
   }
-  function rankCell(i, isBest){
+  function rankCell(i, isBest, ign){
     var n = i + 1;
     if (isBest && i < 3){
       var cls = i === 0 ? "gold" : i === 1 ? "silver" : "bronze";
       var crown = i === 0
         ? '<svg class="medal-crown" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 8l4.5 3.2L12 4l4.5 7.2L21 8l-2.2 10H5.2L3 8z"/></svg>'
         : "";
-      return '<span class="rank-medal-wrap">'+crown+'<span class="rank-medal rank-'+cls+'">'+n+'</span></span>';
+      return '<span class="rank-medal-wrap">'+crown+
+        '<span class="rank-medal rank-'+cls+'"><span class="rank-medal-num">'+n+'.</span>'+
+        '<span class="rank-medal-face">'+avatarImg(ign, 26)+'</span></span></span>';
     }
     return n;
   }
@@ -1473,11 +1590,11 @@
     PLAYERS.forEach(function(p){ if (Array.isArray(p.retired)) retiredCount += p.retired.length; });
 
     var pills = [
-      '<span class="stat-pill"><strong>'+ranked+'</strong> Ranked Player'+(ranked===1?"":"s")+'</span>',
-      '<span class="stat-pill"><strong>'+regionCount+'</strong> Region'+(regionCount===1?"":"s")+' Active</span>'
+      '<span class="stat-pill" style="animation-delay:0ms;"><strong>'+ranked+'</strong> Ranked Player'+(ranked===1?"":"s")+'</span>',
+      '<span class="stat-pill" style="animation-delay:70ms;"><strong>'+regionCount+'</strong> Region'+(regionCount===1?"":"s")+' Active</span>'
     ];
     if (retiredCount > 0){
-      pills.push('<span class="stat-pill stat-retired"><strong>'+retiredCount+'</strong> Retired Status'+(retiredCount===1?"":"es")+'</span>');
+      pills.push('<span class="stat-pill stat-retired" style="animation-delay:140ms;"><strong>'+retiredCount+'</strong> Retired Status'+(retiredCount===1?"":"es")+'</span>');
     }
     host.innerHTML = pills.join("");
   }
@@ -1488,9 +1605,23 @@
     return nameOk && regionOk;
   }
 
+  // True overall position for every player, independent of the current
+  // search/region filter -- a search result keeps the rank it actually
+  // holds on the full leaderboard instead of being renumbered 1,2,3...
+  // within just the visible matches (which used to also hand out gold/
+  // silver/bronze medals to whatever happened to match first).
+  function trueOverallRanks(){
+    var ranked = {};
+    PLAYERS.slice()
+      .sort(function(a,b){ return totalPoints(b) - totalPoints(a); })
+      .forEach(function(p, idx){ ranked[p.ign] = idx; });
+    return ranked;
+  }
+
   function renderOverall(animate){
     if (animate === undefined) animate = true;
     var isBest = state.overallDir === -1;
+    var trueRank = trueOverallRanks();
     var allMatching = PLAYERS
       .map(function(p){ return {p:p, total:totalPoints(p)}; })
       .filter(function(r){ return matches(r.p); })
@@ -1505,11 +1636,12 @@
       body.innerHTML = '<tr class="empty-row"><td colspan="5">No players match this filter.</td></tr>';
     } else {
       body.innerHTML = rows.map(function(r, i){
-        var rankClass = podiumClass(i, isBest);
+        var ri = trueRank[r.p.ign];
+        var rankClass = podiumClass(ri, isBest);
         var delay = Math.min(i * 22, 260);
         var rt = rankTitleFor(r.total);
         return '<tr class="clickable-row row-in '+rankClass+'" style="animation-delay:'+delay+'ms;" data-ign="'+esc(r.p.ign)+'">'+
-          '<td class="rank">'+rankCell(i, isBest)+'</td>'+
+          '<td class="rank">'+rankCell(ri, isBest, r.p.ign)+'</td>'+
           '<td><div class="player-cell"><span class="avatar">'+avatarImg(r.p.ign, 30)+'</span>'+
             '<span class="player-id-block"><span class="player-name">'+esc(r.p.ign)+'</span>'+
             rankTitleHtml(rt, false)+'</span></div></td>'+
@@ -1591,7 +1723,7 @@
     setTimeout(function(){
       renderKitTable();
       container.classList.remove("kit-swap-out");
-    }, 140);
+    }, 180);
   }
 
   // Per-kit rankings are grouped into one section per tier (HT1 down to
@@ -1643,8 +1775,10 @@
       e.className = "ember";
       e.style.left = (Math.random()*100)+"%";
       e.style.setProperty("--drift", (Math.random()*110-55)+"px");
-      e.style.animationDuration = (5.5+Math.random()*8)+"s";
-      e.style.animationDelay = (Math.random()*10)+"s";
+      e.style.setProperty("--sway", (8+Math.random()*14)+"px");
+      var dur = 5.5+Math.random()*8;
+      e.style.animationDuration = dur+"s";
+      e.style.animationDelay = (-Math.random()*dur)+"s";
       e.style.opacity = String(0.45 + Math.random()*0.5);
       var scale = 0.55 + Math.random()*1.35;
       e.style.width = (5*scale)+"px";
@@ -1668,7 +1802,7 @@
       [255, 244, 214], [255, 206, 107], [255, 172, 79], [255, 157, 60],
       [255, 120, 50], [255, 90, 46], [240, 78, 35], [214, 58, 28]
     ];
-    var COUNT = 100;
+    var COUNT = 130;
     var particles = [];
     var pointer = {x:-9999, y:-9999, active:false};
     var running = true;
@@ -1691,7 +1825,7 @@
       p.phase = Math.random() * Math.PI * 2;
       p.swayAmp = 10 + Math.random() * 22;
       p.swaySpeed = 0.4 + Math.random() * 0.6;
-      p.alpha = 0.35 + Math.random() * 0.45;
+      p.alpha = 0.45 + Math.random() * 0.5;
       p.color = c;
       p.driftX = 0;
       p.driftY = 0;
@@ -1733,7 +1867,7 @@
 
       for (var i = 0; i < particles.length; i++){
         var p = particles[i];
-        var baseX = p.x + Math.sin(t * 0.016 * p.swaySpeed + p.phase) * 0.6;
+        var baseX = p.x + Math.sin(t * 0.016 * p.swaySpeed + p.phase) * p.swayAmp;
 
         if (pointer.active){
           var dx = baseX - pointer.x, dy = p.y - pointer.y;
@@ -1763,13 +1897,13 @@
         var rgb = p.color;
         var twinkle = 0.72 + Math.sin(t * 0.05 * p.twinkleSpeed + p.twinklePhase) * 0.28;
         var a = p.alpha * twinkle;
-        var grad = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, p.r * 4.4);
+        var grad = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, p.r * 5.2);
         grad.addColorStop(0, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")");
         grad.addColorStop(0.4, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + (a * 0.5) + ")");
         grad.addColorStop(1, "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0)");
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(drawX, drawY, p.r * 4.4, 0, Math.PI * 2);
+        ctx.arc(drawX, drawY, p.r * 5.2, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.beginPath();
@@ -1861,6 +1995,48 @@
   // out from under it (both target the same #modalBurst host).
   var emberBurstCleanupTimer = null;
 
+  // One-time "ignition" splash: reuses the same radial burst-spark
+  // mechanic as the profile modal's emberBurst() (see below) so the two
+  // moments feel like one visual language instead of two unrelated effects.
+  function initIntroSplash(){
+    var overlay = document.getElementById("introOverlay");
+    if (!overlay) return;
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var alreadyPlayed = false;
+    try { alreadyPlayed = sessionStorage.getItem("ftIntroPlayed") === "1"; } catch(e){}
+    if (reduced || alreadyPlayed){
+      overlay.remove();
+      return;
+    }
+    try { sessionStorage.setItem("ftIntroPlayed", "1"); } catch(e){}
+    var host = document.getElementById("introBurst");
+    if (host){
+      var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      var n = 14;
+      for (var i = 0; i < n; i++){
+        var el = document.createElement("span");
+        el.className = "burst-spark";
+        var angle = (Math.PI * 2 * i / n) + (Math.random() * 0.3 - 0.15);
+        var dist = 70 + Math.random() * 90;
+        el.style.left = cx + "px";
+        el.style.top = cy + "px";
+        el.style.setProperty("--tx", (Math.cos(angle) * dist).toFixed(1) + "px");
+        el.style.setProperty("--ty", (Math.sin(angle) * dist).toFixed(1) + "px");
+        el.style.setProperty("--sd", (0.6 + Math.random() * 0.4).toFixed(2) + "s");
+        el.style.animationDelay = Math.round(150 + Math.random() * 120) + "ms";
+        host.appendChild(el);
+      }
+    }
+    var removeOverlay = function(){
+      if (overlay && overlay.parentNode) overlay.remove();
+      overlay = null;
+    };
+    overlay.addEventListener('animationend', function(e){
+      if (e.target === overlay) removeOverlay();
+    });
+    setTimeout(removeOverlay, 2500);
+  }
+
   function emberBurst(){
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var host = document.getElementById("modalBurst");
@@ -1873,21 +2049,24 @@
     var cy = avRect.top - cardRect.top + avRect.height / 2;
     if (emberBurstCleanupTimer){ clearTimeout(emberBurstCleanupTimer); emberBurstCleanupTimer = null; }
     host.innerHTML = "";
-    var n = 16;
+    var n = 26;
     for (var i = 0; i < n; i++){
       var el = document.createElement("span");
       el.className = "burst-spark";
       var angle = (Math.PI * 2 * i / n) + (Math.random() * 0.4 - 0.2);
-      var dist = 46 + Math.random() * 54;
+      var dist = 60 + Math.random() * 90;
       el.style.left = cx + "px";
       el.style.top = cy + "px";
       el.style.setProperty("--tx", (Math.cos(angle) * dist).toFixed(1) + "px");
       el.style.setProperty("--ty", (Math.sin(angle) * dist).toFixed(1) + "px");
-      el.style.setProperty("--sd", (0.55 + Math.random() * 0.35).toFixed(2) + "s");
+      el.style.setProperty("--sd", (0.6 + Math.random() * 0.45).toFixed(2) + "s");
       el.style.animationDelay = Math.round(Math.random() * 90) + "ms";
       host.appendChild(el);
     }
-    emberBurstCleanupTimer = setTimeout(function(){ host.innerHTML = ""; emberBurstCleanupTimer = null; }, 1100);
+    emberBurstCleanupTimer = setTimeout(function(){ host.innerHTML = ""; emberBurstCleanupTimer = null; }, 1200);
+    card.classList.remove("ignite");
+    void card.offsetWidth;
+    card.classList.add("ignite");
   }
 
   // Keyboard a11y: remember whatever had focus before the modal opened (a
@@ -2103,13 +2282,13 @@
     if (!chip) return;
     chip.classList.remove("chip-live","chip-sample","chip-error");
     if (mode === "live"){
-      chip.textContent = "● Live";
+      chip.innerHTML = '<span class="live-dot">●</span> Live';
       chip.classList.add("chip-live");
     } else if (mode === "error"){
-      chip.textContent = "● Sync Error";
+      chip.innerHTML = '<span class="live-dot">●</span> Sync Error';
       chip.classList.add("chip-error");
     } else {
-      chip.textContent = "● Offline";
+      chip.innerHTML = '<span class="live-dot">●</span> Offline';
       chip.classList.add("chip-sample");
     }
     chip.title = detail || "";
@@ -2199,6 +2378,7 @@
   renderKitTable();
   initEmbers();
   initLivingEmbers();
+  initIntroSplash();
   loadDiscordWidget();
   tryOpenFromHash(false);
 
