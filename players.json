@@ -147,7 +147,7 @@
     },
     {
       "ign": "DuckTheQuyck",
-      "region": :"EU",
+      "region": : "EU",
       "tiers": {
         "sword": "HT2",
         "diapot": "HT3"
