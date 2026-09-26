@@ -144,6 +144,15 @@
       "tiers": {
         "axe": "LT2"
       }
+    },
+    {
+      "ign": "DuckTheQuyck",
+      "region": :"EU",
+      "tiers": {
+        "sword": "HT2",
+        "diapot": "HT3"
+        "mace": "LT4"
+      }
     }
   ]
 }
