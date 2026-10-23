@@ -153,6 +153,34 @@
         "diapot": "HT3",
         "mace": "LT4"
       }
+    },
+    {
+      "ign": "xn1o",
+      "region": "EU",
+      "tiers": {
+        "sword": "HT3",
+        "axe": "HT3",
+        "mace": "HT3",
+        "uhc": "LT4",
+        "nethpot": "LT2",
+        "diapot": "LT3",
+        "smp": "LT3",
+        "cpvp": "HT3"
+      }
+    },
+    {
+      "ign": "lubelska",
+      "region": "EU",
+      "tiers": {
+        "sword": "HT1",
+        "axe": "HT3",
+        "mace": "LT2",
+        "uhc": "HT2",
+        "nethpot": "LT3",
+        "diapot": "HT3",
+        "smp": "LT2",
+        "cpvp": "HT1"
+      }
     }
   ]
 }
